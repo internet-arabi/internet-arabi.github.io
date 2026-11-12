@@ -118,6 +118,20 @@
   .faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.06);font-size:20px;color:var(--red2);transition:transform .2s}
   .faq details[open] summary::after{transform:rotate(45deg)}
   .faq details p{color:#c3cad6;font-size:16.5px;padding:0 0 18px}
+  .checkbox{max-width:860px;margin:0 auto;background:linear-gradient(180deg,#171d2a,#121722);border:1px solid var(--line);border-radius:24px;padding:32px 30px 26px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 20px;margin-bottom:22px}
+  .checkbox label{display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:16px}
+  .checkbox .opt{font-weight:600;color:var(--muted);font-size:13px}
+  .checkbox input,.checkbox select{font:inherit;font-weight:600;font-size:17px;color:var(--text);background:#0e131b;border:1px solid #2c3546;border-radius:14px;padding:14px 16px;outline:none;transition:border-color .15s,box-shadow .15s;width:100%;appearance:none}
+  .checkbox select{background-image:linear-gradient(45deg,transparent 50%,#8b95a8 50%),linear-gradient(135deg,#8b95a8 50%,transparent 50%);background-position:18px 50%,24px 50%;background-size:6px 6px;background-repeat:no-repeat}
+  .checkbox input[dir=auto]:placeholder-shown{direction:rtl}
+  .checkbox input::placeholder{color:#5f6879;font-weight:500}
+  .checkbox input:focus,.checkbox select:focus{border-color:var(--wa);box-shadow:0 0 0 4px rgba(37,211,102,.15)}
+  .checkbox .bad{border-color:var(--red2)!important}
+  .checkbtn{width:100%}
+  .err{color:#ff8a91;font-weight:700;margin:-8px 0 14px}
+  .hint{color:var(--muted);font-size:14.5px;margin-top:14px;text-align:center}
+  @media (max-width:700px){.grid2{grid-template-columns:1fr}.checkbox{padding:24px 18px 20px}}
   .final{padding:0 0 96px}
   .final-box{position:relative;overflow:hidden;border-radius:28px;padding:56px 32px;text-align:center;background:linear-gradient(135deg,#1a1f2c,#0f131b);border:1px solid var(--line)}
   .final-box::before{content:"";position:absolute;inset:-60% auto auto 50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(closest-side,rgba(37,211,102,.16),transparent 70%)}
@@ -182,7 +196,7 @@
         <p class="lead">ابعتلنا عنوانك عالواتساب. منقلّك شو أعلى سرعة بتوصل لبيتك، ومنعملّك الاشتراك أو النقل أو الإلغاء وانت ببيتك.</p>
         <div class="cta-row">
           <a class="btn btn-wa btn-lg wa-link" href="https://wa.me/905388822203?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%B4%D9%81%D8%AA%20%D8%A5%D8%B9%D9%84%D8%A7%D9%86%D9%83%D9%86%20%D8%B9%D9%84%D9%89%20%D8%AC%D9%88%D8%AC%D9%84%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%86%D8%AA%D8%B1%D9%86%D8%AA" target="_blank" rel="noopener"><svg><use href="#wa"/></svg> احكينا هلق عالواتساب</a>
-          <a class="btn btn-ghost" href="#services">شوف خدماتنا</a>
+          <a class="btn btn-ghost" href="#check">شيّك عنوانك ببلاش</a>
         </div>
         <div class="note"><svg><use href="#check"/></svg> منرد عليك كل يوم من الساعة 9 الصبح لـ 10 المسا</div>
       </div>
@@ -210,6 +224,41 @@
       <div class="stat"><b>واتساب</b><span>رد سريع ومتابعة لآخر خطوة</span></div>
     </div>
   </div>
+
+  <section id="check">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="kicker">شيّك عنوانك ببلاش</div>
+        <h2>شو السرعة يلي بتوصل لبيتك؟</h2>
+        <p class="sub">عبّي عنوانك وابعتو عالواتساب، ومنرد عليك بالسرعة يلي بتوصلك والأسعار.</p>
+      </div>
+      <form class="checkbox reveal" id="checkForm" novalidate>
+        <div class="grid2">
+          <label>المحافظة (İl)
+            <select id="f_il" required><option value="">اختار المحافظة</option></select>
+          </label>
+          <label>المنطقة (İlçe)
+            <input id="f_ilce" required placeholder="مثلاً: Esenyurt" autocomplete="off" dir="auto">
+          </label>
+          <label>المحلة (Mahalle)
+            <input id="f_mah" required placeholder="مثلاً: Pınar Mahallesi" autocomplete="off" dir="auto">
+          </label>
+          <label>الشارع (Sokak / Cadde)
+            <input id="f_sok" required placeholder="مثلاً: 1456. Sokak" autocomplete="off" dir="auto">
+          </label>
+          <label>رقم البناية (Bina No)
+            <input id="f_bina" required inputmode="text" placeholder="مثلاً: 12" autocomplete="off" dir="auto">
+          </label>
+          <label>رقم الشقة (Daire) <span class="opt">اختياري</span>
+            <input id="f_daire" inputmode="text" placeholder="مثلاً: 5" autocomplete="off" dir="auto">
+          </label>
+        </div>
+        <p class="err" id="checkErr" hidden>عبّي المحافظة والمنطقة والمحلة والشارع ورقم البناية.</p>
+        <button class="btn btn-wa btn-lg checkbtn" type="submit"><svg><use href="#wa"/></svg> شيّك عنواني عالواتساب</button>
+        <p class="hint">الأحسن تكتب العنوان بالتركي متل ما هو عالفاتورة أو على باب البناية. إذا ما بتعرفو كامل، ابعت يلي بتعرفو، أو صورة فاتورة قديمة.</p>
+      </form>
+    </div>
+  </section>
 
   <section id="services">
     <div class="wrap">
@@ -310,6 +359,21 @@
   // One WhatsApp link everywhere. The prefilled sentence must stay exactly as is: the bot uses it to know the customer came from Google.
   var WA = "https://wa.me/905388822203?text=" + encodeURIComponent("مرحبا، شفت إعلانكن على جوجل، بدي انترنت");
   document.querySelectorAll(".wa-link").forEach(function (a) { a.href = WA; a.target = "_blank"; a.rel = "noopener"; });
+  // Address check: opens WhatsApp with the address. The first line is the Google sentence (ad tracking); the bot checks the address and replies with speed + prices.
+  var IL = "Adana Adıyaman Afyonkarahisar Ağrı Aksaray Amasya Ankara Antalya Ardahan Artvin Aydın Balıkesir Bartın Batman Bayburt Bilecik Bingöl Bitlis Bolu Burdur Bursa Çanakkale Çankırı Çorum Denizli Diyarbakır Düzce Edirne Elazığ Erzincan Erzurum Eskişehir Gaziantep Giresun Gümüşhane Hakkari Hatay Iğdır Isparta İstanbul İzmir Kahramanmaraş Karabük Karaman Kars Kastamonu Kayseri Kilis Kırıkkale Kırklareli Kırşehir Kocaeli Konya Kütahya Malatya Manisa Mardin Mersin Muğla Muş Nevşehir Niğde Ordu Osmaniye Rize Sakarya Samsun Şanlıurfa Siirt Sinop Sivas Şırnak Tekirdağ Tokat Trabzon Tunceli Uşak Van Yalova Yozgat Zonguldak".split(" ");
+  var sel = document.getElementById("f_il");
+  IL.forEach(function (n) { var o = document.createElement("option"); o.value = o.textContent = n; sel.appendChild(o); });
+  document.getElementById("checkForm").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var ids = ["f_il", "f_ilce", "f_mah", "f_sok", "f_bina"], ok = true;
+    ids.forEach(function (id) { var el = document.getElementById(id); var bad = !el.value.trim(); el.classList.toggle("bad", bad); if (bad) ok = false; });
+    document.getElementById("checkErr").hidden = ok;
+    if (!ok) return;
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var addr = v("f_mah") + ", " + v("f_sok") + ", No: " + v("f_bina") + (v("f_daire") ? ", Daire: " + v("f_daire") : "") + ", " + v("f_ilce") + " / " + v("f_il");
+    var msg = "مرحبا، شفت إعلانكن على جوجل، بدي انترنت\nبدي شيّك عنواني:\n" + addr;
+    window.open("https://wa.me/905388822203?text=" + encodeURIComponent(msg), "_blank", "noopener");
+  });
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { threshold: .12 }) : null;
